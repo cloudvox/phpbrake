@@ -8,7 +8,7 @@ php:
   - hhvm
 
 install:
-  - composer install
+  - composer --dev install
 
 script:
-  - phpunit
+  - ./vendor/bin/phpunit
