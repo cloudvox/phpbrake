@@ -73,6 +73,7 @@ class Notifier
             'type' => get_class($exc),
             'message' => $exc->getMessage(),
             'backtrace' => $backtrace,
+            'code' => $exc->getCode(),
         );
 
         $context = array(
