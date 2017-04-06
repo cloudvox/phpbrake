@@ -39,13 +39,14 @@ class NotifyTest extends PHPUnit_Framework_TestCase
     public function testPostsBacktrace()
     {
         $backtrace = $this->notifier->notice['errors'][0]['backtrace'];
+        // Note: The following assertion is specific to PHPUnit 4.8.35
         $wanted = array(array(
             'file' => dirname(dirname(__FILE__)) . '/vendor/phpunit/phpunit/src/Framework/TestCase.php',
-            'line' => 742,
+            'line' => 764,
             'function' => 'Airbrake\Tests\NotifyTest->setUp',
         ));
         for ($i = 0; $i < count($wanted); $i++) {
-            $this->assertEquals($backtrace[$i], $wanted[$i]);
+            $this->assertEquals($wanted[$i], $backtrace[$i]);
         }
     }
 
