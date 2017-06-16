@@ -64,8 +64,8 @@ class ErrorHandler
         if ($error === null) {
             return;
         }
-        if ($error['type'] & error_reporting() === 0) {
-         return;
+        if (($error['type'] & \error_reporting()) === 0) {
+            return;
         }
         $exc = new Errors\Fatal($error['message'], $error['file'], $error['line'], $trace = array(), $error['type']);
         $this->notifier->notify($exc);
