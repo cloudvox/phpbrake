@@ -24,23 +24,27 @@ class ErrorHandler
      * with set_error_handler.
      */
     public function onError($code, $message, $file, $line) {
+        // phpcs:disable
+        $trace = debug_backtrace();
+        // phpcs:enable
+
         switch ($code) {
             case E_NOTICE:
             case E_USER_NOTICE:
-                $exc = new Errors\Notice($message, $file, $line, debug_backtrace(), $code);
+                $exc = new Errors\Notice($message, $file, $line, $trace, $code);
                 break;
             case E_WARNING:
             case E_USER_WARNING:
-                $exc = new Errors\Warning($message, $file, $line, debug_backtrace(), $code);
+                $exc = new Errors\Warning($message, $file, $line, $trace, $code);
                 break;
             case E_ERROR:
             case E_CORE_ERROR:
             case E_RECOVERABLE_ERROR:
-                $exc = new Errors\Fatal($message, $file, $line, debug_backtrace(), $code);
+                $exc = new Errors\Fatal($message, $file, $line, $trace, $code);
                 break;
             case E_USER_ERROR:
             default:
-                $exc = new Errors\Error($message, $file, $line, debug_backtrace(), $code);
+                $exc = new Errors\Error($message, $file, $line, $trace, $code);
         }
         $this->notifier->notify($exc);
     }
