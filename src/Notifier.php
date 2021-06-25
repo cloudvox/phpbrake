@@ -23,7 +23,7 @@ class Notifier
     {
         // TODO: test that projectId and projectKey exists
         $this->opt = array_merge($opt, array(
-            'host' => 'api.airbrake.io',
+            'host' => 'static.airbrake.io',
         ));
     }
 
