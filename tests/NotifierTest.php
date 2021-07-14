@@ -24,7 +24,7 @@ class NotifyTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->notifier->url,
-            'https://api.airbrake.io/api/v3/projects/1/notices?key=api_key'
+            'https://static.airbrake.io/api/v3/projects/1/notices?key=api_key'
         );
     }
 
